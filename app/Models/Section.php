@@ -12,4 +12,12 @@ class Section extends Model
         'name',
         'class_id',
     ];
+    public function class()
+    {
+        return $this->belongsTo(Classes::class, 'class_id');
+    }
+    public function students()
+    {
+        return $this->hasMany(Student::class, 'section_id');
+    }
 }
