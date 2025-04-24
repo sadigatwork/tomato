@@ -32,7 +32,7 @@ class SectionResource extends Resource
                 TextInput::make('name')
                     ->required()
                     ->autofocus()
-                    ->unique()
+                    ->unique(ignoreRecord: true)
                     ->placeholder('Enter section name')
                     ->label('Section Name'),
                 Select::make('class_id')
