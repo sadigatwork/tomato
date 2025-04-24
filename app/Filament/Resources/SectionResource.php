@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SectionResource\Pages;
 use App\Filament\Resources\SectionResource\RelationManagers;
 use App\Models\Section;
-use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -21,6 +20,8 @@ use function Laravel\Prompts\select;
 class SectionResource extends Resource
 {
     protected static ?string $model = Section::class;
+
+    protected static ?string $navigationGroup = 'Academic Management';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -39,6 +40,7 @@ class SectionResource extends Resource
                     ->required()
                     ->label('Class')
                     ->placeholder('Select a class'),
+                
             ]);
             
     }
@@ -54,6 +56,10 @@ class SectionResource extends Resource
                 TextColumn::make('class.name')
                     ->label('Class Name')
                     ->searchable()
+                    ->sortable(),
+                TextColumn::make('students_count')
+                    ->label('Number of Students')
+                    ->counts('students')
                     ->sortable(),
             ])
             ->filters([
