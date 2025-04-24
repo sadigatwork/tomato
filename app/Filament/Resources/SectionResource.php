@@ -2,22 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ClassesResource\Pages;
-use App\Filament\Resources\ClassesResource\RelationManagers;
-use App\Models\Classes;
-use Filament\Forms\Components\TextInput;
+use App\Filament\Resources\SectionResource\Pages;
+use App\Filament\Resources\SectionResource\RelationManagers;
+use App\Models\Section;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ClassesResource extends Resource
+class SectionResource extends Resource
 {
-    protected static ?string $model = Classes::class;
+    protected static ?string $model = Section::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -25,12 +23,7 @@ class ClassesResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->required()
-                    ->autofocus()
-                    ->unique()
-                    ->label('Class Name')
-                    ->placeholder('Enter class name'),
+                //
             ]);
     }
 
@@ -38,18 +31,13 @@ class ClassesResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->label('Class Name')
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(),
+                //
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -68,9 +56,9 @@ class ClassesResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListClasses::route('/'),
-            'create' => Pages\CreateClasses::route('/create'),
-            'edit' => Pages\EditClasses::route('/{record}/edit'),
+            'index' => Pages\ListSections::route('/'),
+            'create' => Pages\CreateSection::route('/create'),
+            'edit' => Pages\EditSection::route('/{record}/edit'),
         ];
     }
 }
